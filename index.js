@@ -23,7 +23,25 @@ app.get('/', function (req, res) {
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
-
+app.get('/api/whoami', function(req, res) {
+  // Get IP address
+  const ipaddress = req.ip || 
+                    req.headers['x-forwarded-for'] || 
+                    req.connection.remoteAddress;
+  
+  // Get preferred language
+  const language = req.headers['accept-language'];
+  
+  // Get software/user agent
+  const software = req.headers['user-agent'];
+  
+  // Return the information as JSON
+  res.json({
+    ipaddress: ipaddress,
+    language: language,
+    software: software
+  });
+});
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
