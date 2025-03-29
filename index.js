@@ -23,6 +23,7 @@ app.get('/', function (req, res) {
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
+
 // Add the /api/whoami endpoint
 app.get('/api/whoami', function (req, res) {
   // Get IP address (using x-forwarded-for if behind a proxy)
